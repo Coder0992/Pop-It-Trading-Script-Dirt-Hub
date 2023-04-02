@@ -1,0 +1,61 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Dirt Pop It", HidePremium = false, SaveConfig = true, IntroEnabled = false})
+
+_G.Key = "DirtHubKeyPopIt"
+_G.KeyInput = "string"
+
+function MakeScriptHub()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Coder0992/lt2-Dirt-Lumber-Hub/main/Paid'))()
+end
+
+function CorrectKeyNotification()
+    OrionLib:MakeNotification({
+	    Name = "Correct Key",
+	    Content = "You have entered the correct key",
+	    Image = "rbxassetid://4483345998",
+	    Time = 5
+    })
+end
+
+function IncorrectKeyNotification()
+    OrionLib:MakeNotification({
+	    Name = "Incorrect Key",
+	    Content = "You have entered the Incorrect key",
+	    Image = "rbxassetid://4483345998",
+	    Time = 5
+    })
+end
+
+local Tab = Window:MakeTab({
+	Name = "Key",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+OrionLib:MakeNotification({
+	Name = "Welcome",
+	Content = "Welcome to Dirt Lumber",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+Tab:AddTextbox({
+	Name = "Key Goes Here",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		_G.KeyInput = Value
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Check Key",
+	Callback = function()
+      	if _G.KeyInput == _G.Key then
+      	MakeScriptHub()
+      	CorrectKeyNotification()
+      	else
+      	    IncorrectKeyNotification()
+      	end
+  	end    
+})
